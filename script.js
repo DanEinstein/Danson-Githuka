@@ -15,3 +15,12 @@
     startDelay: 500,
     loop: true
   });
+    const form = document.querySelector("form");
+  const successMsg = document.getElementById("successMessage");
+
+  form.addEventListener("submit", function () {
+    setTimeout(() => {
+      successMsg.style.display = "block";
+      form.reset();
+    }, 1000); // Optional fake delay
+  });

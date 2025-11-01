@@ -8,11 +8,11 @@
     <meta name="description" content="Portfolio of Danson Waithaka Githuka — Full Stack Developer, AI Enthusiast, Hackathon Winner, and creator of EXAECHO.">
     <meta name="keywords" content="Danson Githuka, Full Stack Developer, AI Engineer, EXAECHO, Edyfra, Kenya Software Developer, Portfolio, Maseno University, Web Development">
     <meta name="author" content="Danson Waithaka Githuka">
-    <!-- Favicon -->
-    <link rel="icon" href="/images/kisii001.jpg" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    <!-- Open Graph (for link previews) -->
+    <!-- Favicon -->
+    <link rel="icon" href="/images/mylogo.png" type="image/png">
+
+    <!-- Open Graph -->
     <meta property="og:title" content="Danson Githuka | Full Stack & AI Developer">
     <meta property="og:description" content="Building AI-powered, education-driven digital experiences in Kenya.">
     <meta property="og:type" content="website">
@@ -25,343 +25,1463 @@
     <meta name="twitter:description" content="Hackathon-winning software engineer from Kenya.">
     <meta name="twitter:image" content="https://your-vercel-site.vercel.app/images/preview.png">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/REPLACE_WITH_YOUR_KIT_CODE.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #00ff88;
+            --accent-dim: #00cc6a;
+            --border: #222222;
+            --card-bg: #161616;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                var(--accent) 2px,
+                var(--accent) 4px
+            );
+            animation: bgScroll 30s linear infinite;
+        }
+
+        @keyframes bgScroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, 0.8);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.4s ease;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.4s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            object-fit: cover;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(0, 255, 136, 0); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.4s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.4s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.4s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero-image-container {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 2rem;
+            position: relative;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid var(--accent);
+            box-shadow: 0 0 50px rgba(0, 255, 136, 0.3);
+            animation: fadeIn 1.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .hero-avatar::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
+            animation: shimmer 4s infinite;
+            z-index: 1;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideUp 1.2s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: slideUp 1.4s ease;
+            min-height: 2rem;
+        }
+
+        /* Typing Animation */
+        .typing-text {
+            display: inline-block;
+            border-right: 3px solid var(--accent);
+            animation: blink 0.7s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { border-color: var(--accent); }
+            51%, 100% { border-color: transparent; }
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            animation: slideUp 1.6s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideUp 1.8s ease;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.8s, height 0.8s;
+        }
+
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 5%;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        #about {
+            position: relative;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-content {
+            text-align: left;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .about-content p:nth-child(1) { animation-delay: 0.3s; }
+        .about-content p:nth-child(2) { animation-delay: 0.6s; }
+
+        .about-image-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-images {
+            position: relative;
+            width: 400px;
+            height: 500px;
+        }
+
+        .about-img {
+            position: absolute;
+            width: 300px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.6s ease;
+        }
+
+        .about-img-1 {
+            top: 0;
+            left: 0;
+            border: 3px solid var(--accent);
+            z-index: 2;
+            animation: floatImage1 8s ease-in-out infinite;
+        }
+
+        .about-img-2 {
+            bottom: 0;
+            right: 0;
+            border: 3px solid var(--border);
+            opacity: 0.8;
+            animation: floatImage2 8s ease-in-out infinite;
+        }
+
+        @keyframes floatImage1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(10px, -10px) rotate(2deg); }
+            50% { transform: translate(0, -20px) rotate(0deg); }
+            75% { transform: translate(-10px, -10px) rotate(-2deg); }
+        }
+
+        @keyframes floatImage2 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-10px, 10px) rotate(-2deg); }
+            50% { transform: translate(0, 20px) rotate(0deg); }
+            75% { transform: translate(10px, 10px) rotate(2deg); }
+        }
+
+        .about-img:hover {
+            transform: scale(1.05);
+            z-index: 3;
+        }
+
+        .about-pin {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+            animation: pinSwing 4s ease-in-out infinite;
+        }
+
+        @keyframes pinSwing {
+            0%, 100% { transform: translateX(-50%) rotate(-5deg); }
+            50% { transform: translateX(-50%) rotate(5deg); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.6s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            z-index: 1;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        .project-info {
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            transition: all 0.6s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .skill-card:hover::after {
+            left: 100%;
+        }
+
+        .skill-card:hover {
+            transform: translateX(10px);
+            border-color: var(--accent);
+        }
+
+        .skill-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .skill-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Achievements */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .achievement-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            transition: all 0.6s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.15);
+        }
+
+        .achievement-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            transition: transform 0.6s ease;
+        }
+
+        .achievement-card:hover .achievement-image {
+            transform: scale(1.05);
+        }
+
+        .achievement-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .achievement-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .achievement-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            position: relative;
+            transition: all 0.6s ease;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--accent);
+            opacity: 0.2;
+            line-height: 1;
+        }
+
+        .testimonial-card:hover {
+            transform: scale(1.05);
+            border-color: var(--accent);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .testimonial-role {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.6s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .social-link:hover::before {
+            width: 100%;
+            height: 100%;
+        }
+
+        .social-link:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px) rotate(360deg);
+        }
+
+        .social-link i {
+            position: relative;
+            z-index: 1;
+            transition: color 0.6s ease;
+        }
+
+        .social-link:hover i {
+            color: var(--bg-primary);
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.4s ease;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .success-message {
+            display: none;
+            color: var(--accent);
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        footer p {
+            color: var(--text-secondary);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scrollBounce 3s ease-in-out infinite;
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: translate(-50%, 0); }
+            50% { transform: translate(-50%, 10px); }
+        }
+
+        .scroll-indicator::before {
+            content: '↓';
+            font-size: 2rem;
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--bg-secondary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                gap: 1.5rem;
+                transition: left 0.6s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-content {
+                text-align: center;
+            }
+
+            .about-images {
+                width: 300px;
+                height: 400px;
+                margin: 0 auto;
+            }
+
+            .about-img {
+                width: 220px;
+                height: 300px;
+            }
+
+            .projects-grid,
+            .skills-grid,
+            .achievements-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 3rem 5%;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+        }
+
+        /* Intersection Observer Animation */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
-            <div class="container">
-                <img src="images/kisii001.jpg" alt="Danson Githuka Logo" width="40" height="40" class="me-2">
-                <a class="navbar-brand" href="#">Hire Me</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto bg-info">
-                        <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#Achievements">Achievements</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#Testimonials">Testimonials</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#Blogs">MyBlogs</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <div class="bg-animation"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">
+            <img src="images/small avatar.jpg" alt="Danson Githuka" class="logo-img">
+            Danson Githuka
+        </a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="text-center py-5 bg-light mb-4">
-        <h1 class="display-4">Welcome to My Portfolio</h1>
-        <p class="lead"><span id="typed-name"></span></p>
-        <img src="images/Masenoedyfra.jpg" alt="Danson Githuka" class="img-fluid rounded-circle mb-4" style="width: 400px; height: 400px;">
-        <br>
-        <a href="#about" class="btn btn-primary">Learn More About Me</a>
-        <a href="#projects" class="btn btn-secondary">View My Work</a>
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <div class="hero-image-container">
+                <div class="hero-avatar">
+                    <img src="images/A determined individual.jpg" alt="Danson Githuka">
+                </div>
+            </div>
+            <h1 class="hero-title">Danson Githuka</h1>
+            <p class="hero-subtitle"><span class="typing-text" id="typingText"></span></p>
+            <div class="cta-buttons">
+                <a href="#about" class="btn btn-primary">Learn More About Me</a>
+                <a href="#projects" class="btn btn-secondary">View My Work</a>
+            </div>
+        </div>
+        <div class="scroll-indicator"></div>
     </section>
 
-    <!-- About Me -->
-    <section id="about" class="text-center py-5 bg-light mb-4">
-        <h2 class="mb-4">About Me</h2>
-        <p class="lead">
-            I am a tenacious frontend artisan and a proud member of the Power Learn Project's software engineering program. My passion is architecting digital interfaces that converge clarity, culture, and code. While pursuing my degree at Maseno University, I've honed my skills by synthesizing knowledge through real-time creation of projects. I've also been a part of hackathons, manifesting tools like EXAECHO, a platform built to champion academic equity.<br><br>
-            I am driven by the ethos of builders like Michael Munavu, whose full-stack mastery inspires my pursuit of elegant, end-to-end solutions. I thrive in high-pressure, collaborative environments where innovation is the core objective. Victories in past hackathons affirm my conviction that code, at its finest, solves with intention and speaks with purpose. I am excited to apply this mindset and build something impactful with the team.
-        </p>
-    </section>
-
-    <!-- Projects Showcase -->
-    <section id="projects" class="text-center py-5 bg-light mb-4">
-        <h2 class="mb-4">My Projects</h2>
-        <p class="lead">Here are some of the projects I've worked on:</p>
-        <div class="row justify-content-center">
-            <div class="col-md-6 mb-4">
-                <div class="card h-100 animate__animated animate__fadeIn ">
-                    <img src="images/EXAECHO_logo.jpg" class="img-fluid rounded-3 shadow-sm project-img" alt="EXAECHO" width="600" height="600c:\Users\User\Downloads\dankid.jpg" class="cover">
-                    <div class="card-body">
-                        <h5 class="card-title">EXAECHO</h5>
-                        <p class="card-text">
-                            EXAECHO is an AI-assisted academic revision tool built for students at all levels — from primary to university. The platform allows users to upload past papers and receive AI-generated revision questions aligned with their curriculum. EXAECHO is CBC-compliant and designed to simplify exam preparation through smart, on-demand content generation. It has earned recognition in regional hackathons for its practical application of education and AI.
-                        </p>
-                        <a href="#" class="btn btn-primary">View Project</a>
-                    </div>
-                </div>
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-container">
+            <div class="about-content animate-on-scroll">
+                <p>Hi there! I’m a Python developer and AI enthusiast, proud to be part of the Power Learn community and currently studying Mathematics and Computer Science at Maseno University. Inspired by tech leaders like Bonaventure Ogeto and Michael Munavu, I’m always eager to learn, collaborate, and build practical solutions that make a real impact.</p>
             </div>
-            <div class="col-md-6 mb-4">
-                <div class="card h-100 animate__animated animate__fadeIn">
-                    <img src="images/Edyfra logo.jpeg" class="img-fluid rounded-3 shadow-sm project-img" alt="Edyfra" width="600" height="600" class="cover">
-                    <div class="card-body">
-                        <h5 class="card-title">Edyfra</h5>
-                        <p class="card-text">
-                            Edyfra is an education-focused web platform built to support Kenya's Competency-Based Curriculum (CBC). It allows students to input their academic results and intelligently matches them with ideal peer study partners based on subject strengths and weaknesses. The system promotes collaborative learning and academic growth through tailored student pairings. Built as a team project, Edyfra reflects innovation in personalized education support.
-                        </p>
-                        <a href="#" class="btn btn-primary">View Project</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 mb-4">
-                <div class="card h-100 animate__animated animate__fadeIn">
-                    <img src="images/noodles.jpg" class="img-fluid rounded-3 shadow-sm project-img" alt="Jirani Eats" width="600" height="600" class="cover">
-                    <div class="card-body">
-                        <h5 class="card-title">Jirani Eats</h5>
-                        <p class="card-text">
-                            Jirani Eats is a community-powered food ordering app designed to connect users with local food vendors, home chefs, and small eateries. The platform empowers neighborhoods by making it easy to discover and order home-cooked meals from trusted local kitchens. Jirani Eats brings visibility to informal food businesses, supporting grassroots entrepreneurship while offering convenience to customers through a clean, mobile-first design.
-                        </p>
-                        <a href="#" class="btn btn-primary">View Project</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 mb-4">
-                <div class="card h-100 animate__animated animate__fadeIn">
-                    <img src="images/Screenshot 2025-06-12 235449.png" class="img-fluid rounded-3 shadow-sm project-img" alt="CHACHA AND COMPANY WEBSITE" width="600" height="600" class="cover">
-                    <div class="card-body">
-                        <h5 class="card-title">CHACHA AND COMPANY WEBSITE</h5>
-                        <p class="card-text">
-                            This is a fully responsive, multi-page website developed for Chacha and Company Advocates — a professional law firm. The site features a clean layout with dedicated pages for Home, About, Attorneys, Services, and Contact. Built using HTML, CSS, JavaScript, and Bootstrap, the website reflects modern legal professionalism and enhances the firm's online presence with easy navigation and a user-friendly interface.
-                        </p>
-                        <a href="#" class="btn btn-primary">View Project</a>
-                    </div>
+            <div class="about-image-wrapper animate-on-scroll">
+                <div class="about-images">
+                    <img src="images/image_pin.jpg" alt="Pin" class="about-pin">
+                    <img src="images/cartoon.jpg" alt="Danson Githuka" class="about-img about-img-1">
+                    <img src="images/coding_cartoon.jpg" alt="Danson Githuka" class="about-img about-img-2">
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Skills -->
-    <section id="skills" class="text-center py-5 bg-light mb-4">
-        <h2 class="mb-4">My Skills</h2>
-        <p class="lead">I have a diverse skill set that allows me to tackle various web development challenges.</p>
-        <!-- Skills Carousel -->
-        <div id="skillsCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner text-center text-white bg-dark p-4 rounded">
-                <div class="carousel-item active">
-                    <h4>Responsive Web Design</h4>
-                    <p>Creating seamless layouts across devices using Bootstrap & custom media queries.</p>
-                </div>
-                <div class="carousel-item">
-                    <h4>Cultural Storytelling in Tech</h4>
-                    <p>Weaving Kenyan culinary heritage into digital experiences.</p>
-                </div>
-                <div class="carousel-item">
-                    <h4>SEO Optimization</h4>
-                    <p>Boosting site visibility with clean, indexable HTML and keyword strategies.</p>
-                </div>
-                <div class="carousel-item">
-                    <h4>Generative AI Integration</h4>
-                    <p>Experimenting with emerging tech to enhance creativity and functionality.</p>
-                </div>
-                <div class="carousel-item">
-                    <h4>UI/UX & Hover Effects</h4>
-                    <p>Elevating interaction with animation, polish, and style.</p>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#skillsCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#skillsCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </section>
-
-    <!-- Achievements -->
-    <section id="Achievements" class="text-center py-5 bg-light mb-4 animate__animated animate__fadeIn">
-        <h2 class="mb-4">Achievements</h2>
-        <p class="lead">I have been recognized for my contributions in web development and design.</p>
-        <div class="row justify-content-center">
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <img src="images/Edyfra.jpeg" alt="MUCISA Hackathon 2025 – Winner" class="img-fluid mb-3" style="max-height:200px;">
-                        <h5 class="card-title">🏆 MUCISA Hackathon 2025 – Winner</h5>
-                        <p class="card-text">
-                            Project: Edyfra: The Hive Mind Revolution<br>
-                            Achievement: Took part in the development of an AI-powered learning ecosystem that adapts to individual student needs. The project won top honors for its innovation in personalized education and real-time collaboration.<br>
-                            Event Focus: Smart Campus Solutions aligned with SDGs 4, 9, and 10.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <img src="images/Edyfra kisii.jpg" alt="Western Region Research & Innovations Hackathon – Top Award" class="img-fluid mb-3" style="max-height:200px;">
-                        <h5 class="card-title">🧠 Western Region Research & Innovations Hackathon – Top Award</h5>
-                        <p class="card-text">
-                            Project: Edyfra (v2)<br>
-                            Achievement: Recognized as the best education technology solution at a multidisciplinary hackathon hosted at Kisii University. The project stood out for its AI-driven adaptive learning and multilingual accessibility.<br>
-                            Collaborators: Enactus Maseno, MCAAI, and regional universities.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <img src="images/noodles.jpg" alt="Jirani Eats – Full Stack Web App" class="img-fluid mb-3" style="max-height:200px;">
-                        <h5 class="card-title">🍽️ Jirani Eats – Full Stack Web App</h5>
-                        <p class="card-text">
-                            Role: Lead Frontend Developer<br>
-                            Achievement: Designed and deployed a responsive food delivery platform using HTML, CSS, and Bootstrap. Focused on mobile-first UX and clean UI for local food vendors.<br>
-                            Impact: Enabled local restaurants to digitize their menus and reach more customers.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <img src="images/plplogo.webp" alt="Jirani Eats – plp logo" class="img-fluid mb-3" style="max-height:200px;">
-                        <h5 class="card-title">Enrolled in the Power Learn Project</h5>
-                        <p class="card-text">
-                            Role: software engineering student<br>
-                            Achievement: I recently enrolled in the prestigious Power Learn Project Software Engineering program, a pivotal milestone in my journey to becoming a full-stack developer.<br>
-                            This immersive and hands-on course is providing me with a robust foundation in modern development practices, accelerating my ability to build impactful, end-to-end solutions and preparing me for the ever-evolving world of software development.<br>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <img src="images/AI safari.webp" alt="AI safari course" class="img-fluid mb-3" style="max-height:200px;">
-                        <h5 class="card-title">AI safari course-power learn project</h5>
-                        <p class="card-text">
-                            Role: AI student<br>
-                            I successfully enrolled and completed the Power Learn Project's AI Safari course. This achievement signifies my commitment to staying at the forefront of technology, as I've gained practical skills in prompt engineering, no-code AI automation, and an understanding of the ethical implications of AI.<br><br>
-                            This knowledge empowers me to leverage artificial intelligence for innovation in any project.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <img src="images/Screenshot 2025-06-12 235449.png" alt="Chacha Advocates Website" class="img-fluid mb-3" style="max-height:200px;">
-                        <h5 class="card-title">⚖️ Chacha Advocates Website</h5>
-                        <p class="card-text">
-                            Role: Freelance Web Developer<br>
-                            Achievement: Delivered a professional legal website with SEO optimization and responsive design. Prioritized accessibility and clarity for legal service seekers.<br>
-                            Tools: HTML5, CSS3, Bootstrap.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section id="Testimonials" class="text-center py-5 bg-light mb-4">
-        <h2 class="mb-4">Testimonials</h2>
-        <div class="row justify-content-center">
-            <div class="col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <p class="card-text">"Danson is a talented web developer who consistently delivers high-quality work. His attention to detail and creativity are impressive."</p>
-                        <h5 class="card-title">Emmanuel Charles</h5>
-                        <p class="card-subtitle mb-2 text-muted">CEO, Munchify</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <p class="card-text">"Working with Danson was a pleasure. He brought innovative ideas to the table and executed them flawlessly."</p>
-                        <h5 class="card-title">Canol Okoth</h5>
-                        <p class="card-subtitle mb-2 text-muted">Project Manager, Edyfra</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <p class="card-text">"Danson's expertise in web development is outstanding. He transformed our website into a user-friendly platform."</p>
-                        <h5 class="card-title">Mary Wanjiku</h5>
-                        <p class="card-subtitle mb-2 text-muted">Senior Advocate, Chacha and Company Advocates Limited</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <p class="card-text">"I highly recommend Danson for any web development project. His skills and dedication are top-notch."</p>
-                        <h5 class="card-title">Benard Githuka</h5>
-                        <p class="card-subtitle mb-2 text-muted">Manager, E-commerce Company</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-   <section id="contact" class="text-center py-5 bg-light mb-4">
-    <h2 class="mb-4">Let us Connect</h2>
-    <p class="lead"><span id="typed-desc">I am excited to hear from you.</span></p>
-    <div class="d-flex justify-content-center align-items-center">
-        <div class="card shadow-lg p-4" style="width: 100%; max-width: 420px;">
-            <ul class="list-unstyled d-flex justify-content-around mb-0">
-                <li>
-                    <a href="mailto:Githukadanson23@gmail.com" class="text-primary social-link" aria-label="Email Me">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://github.com/DanEinstein" target="_blank" class="text-dark social-link" aria-label="GitHub Profile">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://linkedin.com/in/danson-githuka" target="_blank" class="text-primary social-link" aria-label="LinkedIn Profile">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://wa.me/254712484071" target="_blank" class="text-success social-link" aria-label="WhatsApp">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://x.com/yourusername" target="_blank" class="text-dark social-link" aria-label="X (Twitter) Profile">
-                        <i class="fab fa-x-twitter"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
+    <!-- Projects Section -->
+<section id="projects">
+  <h2 class="section-title">My Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card animate-on-scroll">
+      <img src="images/EXAECHO_logo.jpg" alt="EXAECHO" class="project-image">
+      <div class="project-info">
+        <h3 class="project-name">EXAECHO</h3>
+        <p class="project-description">AI-powered revision platform for students, CBC-compliant, generates exam questions from past papers.</p>
+        <a href="#" class="btn btn-primary">View Project</a>
+      </div>
     </div>
-    <p class="mt-4">Or fill out the form below:</p>
-    <!-- The action URL for this form is for Formspree.io -->
-    <form action="" method="POST" class="mt-4 w-50 mx-auto shadow-lg p-4 rounded-3">
-        <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-        </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" name="_replyto" class="form-control" id="email" placeholder="Your Email" required>
-        </div>
-        <div class="mb-3">
-            <label for="message" class="form-label">Message</label>
-            <textarea name="message" class="form-control" id="message" rows="4" placeholder="Your Message"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Send Message</button>
-    </form>
-    <p class="text-success mt-3" style="display: none;" id="successMessage">Thanks! Your message was sent successfully.</p>
+    <div class="project-card animate-on-scroll">
+      <img src="images/Edyfra logo.jpeg" alt="Edyfra" class="project-image">
+      <div class="project-info">
+        <h3 class="project-name">Edyfra</h3>
+        <p class="project-description">Web app matching students with ideal CBC study partners through smart result analysis.</p>
+        <a href="#" class="btn btn-primary">View Project</a>
+      </div>
+    </div>
+    <div class="project-card animate-on-scroll">
+      <img src="images/noodles.jpg" alt="Jirani Eats" class="project-image">
+      <div class="project-info">
+        <h3 class="project-name">Jirani Eats</h3>
+        <p class="project-description">Food ordering app connecting communities to local kitchens and vendors.</p>
+        <a href="#" class="btn btn-primary">View Project</a>
+      </div>
+    </div>
+    <div class="project-card animate-on-scroll">
+      <img src="images/Screenshot 2025-06-12 235449.png" alt="Chacha and Company" class="project-image">
+      <div class="project-info">
+        <h3 class="project-name">Chacha and Company Website</h3>
+        <p class="project-description">Responsive website for a law firm with multiple pages, built with HTML, CSS, JavaScript, and Bootstrap.</p>
+        <a href="#" class="btn btn-primary">View Project</a>
+      </div>
+    </div>
+  </div>
 </section>
 
+
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">My Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card animate-on-scroll">
+                <h3 class="skill-title">Responsive Web Design</h3>
+                <p class="skill-description">Creating seamless layouts across devices using Bootstrap & custom media queries.</p>
+            </div>
+            <div class="skill-card animate-on-scroll">
+                <h3 class="skill-title">Cultural Storytelling in Tech</h3>
+                <p class="skill-description">Weaving Kenyan culinary heritage into digital experiences.</p>
+            </div>
+            <div class="skill-card animate-on-scroll">
+                <h3 class="skill-title">SEO Optimization</h3>
+                <p class="skill-description">Boosting site visibility with clean, indexable HTML and keyword strategies.</p>
+            </div>
+            <div class="skill-card animate-on-scroll">
+                <h3 class="skill-title">Generative AI Integration</h3>
+                <p class="skill-description">Experimenting with emerging tech to enhance creativity and functionality.</p>
+            </div>
+            <div class="skill-card animate-on-scroll">
+                <h3 class="skill-title">UI/UX & Hover Effects</h3>
+                <p class="skill-description">Elevating interaction with animation, polish, and style.</p>
+            </div>
+        </div>
+    </section>
+
+   <!-- Achievements Section -->
+<section id="achievements">
+    <h2 class="section-title">Achievements</h2>
+    <div class="achievements-grid">
+        <div class="achievement-card animate-on-scroll">
+            <img src="images/Edyfra.jpeg" alt="MUCISA Hackathon 2025" class="achievement-image">
+            <div class="achievement-icon">🏆</div>
+            <h3 class="achievement-title">MUCISA Hackathon Winner</h3>
+            <p class="achievement-description">Developed award-winning AI learning platform Edyfra, recognized for innovation in personalized education.</p>
+        </div>
+
+        <div class="achievement-card animate-on-scroll">
+            <img src="images/Edyfra kisii.jpg" alt="Western Region Hackathon" class="achievement-image">
+            <div class="achievement-icon">💡</div>
+            <h3 class="achievement-title">Top EdTech Solution</h3>
+            <p class="achievement-description">Awarded best education technology for AI-driven adaptive learning at regional hackathon.</p>
+        </div>
+
+        <div class="achievement-card animate-on-scroll">
+            <img src="images/noodles.jpg" alt="Jirani Eats" class="achievement-image">
+            <div class="achievement-icon">📱</div>
+            <h3 class="achievement-title">Jirani Eats Platform</h3>
+            <p class="achievement-description">Led frontend development for community food delivery app connecting local vendors with customers.</p>
+        </div>
+
+        <div class="achievement-card animate-on-scroll">
+            <img src="images/plplogo.webp" alt="Power Learn Project" class="achievement-image">
+            <div class="achievement-icon">🎓</div>
+            <h3 class="achievement-title">Software Engineering</h3>
+            <p class="achievement-description">Enrolled in Power Learn Project's intensive full-stack development program.</p>
+        </div>
+
+        <div class="achievement-card animate-on-scroll">
+            <img src="images/AI safari.webp" alt="AI Safari Course" class="achievement-image">
+            <div class="achievement-icon">🤖</div>
+            <h3 class="achievement-title">AI Specialist</h3>
+            <p class="achievement-description">Certified in AI technologies including prompt engineering and automation systems.</p>
+        </div>
+
+        <div class="achievement-card animate-on-scroll">
+            <img src="images/Screenshot 2025-06-12 235449.png" alt="Chacha Advocates Website" class="achievement-image">
+            <div class="achievement-icon">⚖️</div>
+            <h3 class="achievement-title">Legal Website Project</h3>
+            <p class="achievement-description">Delivered professional website for Chacha Advocates with SEO optimization.</p>
+        </div>
+    </div>
+</section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <h2 class="section-title">Testimonials</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card animate-on-scroll">
+                <p class="testimonial-text">Danson is a talented web developer who consistently delivers high-quality work. His attention to detail and creativity are impressive.</p>
+                <div class="testimonial-author">Emmanuel Charles</div>
+                <div class="testimonial-role">CEO, Munchify</div>
+            </div>
+
+            <div class="testimonial-card animate-on-scroll">
+                <p class="testimonial-text">Working with Danson was a pleasure. He brought innovative ideas to the table and executed them flawlessly.</p>
+                <div class="testimonial-author">Canol Okoth</div>
+                <div class="testimonial-role">Project Manager, Edyfra</div>
+            </div>
+
+            <div class="testimonial-card animate-on-scroll">
+                <p class="testimonial-text">Danson's expertise in web development is outstanding. He transformed our website into a user-friendly platform.</p>
+                <div class="testimonial-author">Mary Wanjiku</div>
+                <div class="testimonial-role">Senior Advocate, Chacha and Company Advocates Limited</div>
+            </div>
+
+            <div class="testimonial-card animate-on-scroll">
+                <p class="testimonial-text">I highly recommend Danson for any web development project. His skills and dedication are top-notch.</p>
+                <div class="testimonial-author">Benard Githuka</div>
+                <div class="testimonial-role">Manager, E-commerce Company</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="contact-content">
+            <p class="hero-subtitle">I am excited to hear from you.</p>
+
+            <div class="social-links">
+                <a href="mailto:Githukadanson23@gmail.com" class="social-link" aria-label="Email Me">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://github.com/DanEinstein" target="_blank" class="social-link" aria-label="GitHub Profile">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/danson-githuka" target="_blank" class="social-link" aria-label="LinkedIn Profile">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://wa.me/254712484071" target="_blank" class="social-link" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://x.com/yourusername" target="_blank" class="social-link" aria-label="X (Twitter) Profile">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+            </div>
+
+            <form class="contact-form" id="contactForm" action="" method="POST">
+                <div class="form-group">
+                    <label class="form-label" for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="_replyto" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="message">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            </form>
+            <p class="success-message" id="successMessage">Thanks! Your message was sent successfully.</p>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="text-center py-4 bg-dark text-white">
+    <footer>
         <p>&copy; 2025 Danson Githuka. All rights reserved.</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <!-- Typed.js library for creating a "typing" animation effect -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+        // Typing Animation
+        const texts = ['Python AI Enthusiast', 'Full Stack Developer', 'Hackathon Winner', 'Problem Solver'];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 100;
+        const deletingSpeed = 50;
+        const pauseTime = 2000;
+
+        function typeText() {
+            const typingElement = document.getElementById('typingText');
+            const currentText = texts[textIndex];
+
+            if (!isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+
+                if (charIndex === currentText.length) {
+                    isDeleting = true;
+                    setTimeout(typeText, pauseTime);
+                    return;
+                }
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length;
+                }
+            }
+
+            setTimeout(typeText, isDeleting ? deletingSpeed : typingSpeed);
+        }
+
+        // Start typing animation when page loads
+        window.addEventListener('load', () => {
+            setTimeout(typeText, 500);
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+
+            const spans = menuToggle.querySelectorAll('span');
+            spans[0].style.transform = navLinks.classList.contains('active') ? 'rotate(45deg) translateY(10px)' : 'none';
+            spans[1].style.opacity = navLinks.classList.contains('active') ? '0' : '1';
+            spans[2].style.transform = navLinks.classList.contains('active') ? 'rotate(-45deg) translateY(-10px)' : 'none';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const spans = menuToggle.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for Scroll Animations with SLOWER timing
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax Effect for Hero Section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                const successMsg = document.getElementById('successMessage');
+                successMsg.style.display = 'block';
+                this.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 5000);
+            }, 1500);
+        });
+
+        // Card Tilt Effect
+        document.querySelectorAll('.project-card, .achievement-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
+        });
+
+        // Navbar Background Change on Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+                nav.style.boxShadow = '0 4px 30px rgba(0, 255, 136, 0.1)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 10, 0.8)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Add active state to nav links based on scroll position
+        const sections = document.querySelectorAll('section[id]');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Add reveal animation on scroll for all cards with SLOWER timing
+        const revealElements = document.querySelectorAll('.project-card, .skill-card, .achievement-card, .testimonial-card');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 250);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+            revealObserver.observe(el);
+        });
+
+        // Particle effect on scroll
+        let lastScrollTop = 0;
+        let particleTimeout;
+
+        window.addEventListener('scroll', () => {
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (Math.abs(st - lastScrollTop) > 50) {
+                clearTimeout(particleTimeout);
+                particleTimeout = setTimeout(() => {
+                    createParticle();
+                }, 100);
+            }
+
+            lastScrollTop = st <= 0 ? 0 : st;
+        }, false);
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = '4px';
+            particle.style.height = '4px';
+            particle.style.background = 'var(--accent)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = '0px';
+            particle.style.opacity = '0.6';
+            particle.style.zIndex = '9999';
+
+            document.body.appendChild(particle);
+
+            let posY = 0;
+            const animate = setInterval(() => {
+                posY += 5;
+                particle.style.top = posY + 'px';
+                particle.style.opacity = parseFloat(particle.style.opacity) - 0.02;
+
+                if (posY > window.innerHeight || parseFloat(particle.style.opacity) <= 0) {
+                    clearInterval(animate);
+                    particle.remove();
+                }
+            }, 20);
+        }
+
+        // Initialize all animations on page load
+        window.addEventListener('load', () => {
+            document.body.style.overflow = 'auto';
+        });
+    </script>
 </body>
 </html>
